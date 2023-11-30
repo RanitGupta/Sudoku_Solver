@@ -54,6 +54,10 @@ def gaussian_blur(img, size, sig):
 def adaptive_thresh(img, size, sig, c):
     #First apply gaussian blurring
     blur = gaussian_blur(img, size, sig)
+
+    # testing using the median as the constant thresh value
+    # c = np.median(img, axis = None)
+    
     #Next subtract a constant thresh value
     thresh = blur - c
     #binarize
@@ -331,7 +335,8 @@ def image_to_array(image):
             dy = cent_y - real_cent_y
 
 
-            centered_cell = cell_img
+            centered_cell = np.zeros(cell_img.shape)
+            # try:
             if dx > 0 and dy > 0:
                 centered_cell[:-1*dx, :-1*dy] = cell_img[dx:, dy:]
             elif dx < 0 and dy > 0:
