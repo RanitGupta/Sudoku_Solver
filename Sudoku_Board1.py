@@ -209,7 +209,7 @@ def get_board(image):
     gray = to_gray(image, 1/3, 1/3, 1/3)
 
     #use adaptive gaussian thresholding to convert to binary image
-    bin = adaptive_thresh(gray, 7, 6, 4)[2]
+    bin = adaptive_thresh(gray, 11, 8, 9)[2]
 
     #Use morphology opening filter to better detect borders
     img_open = median_filtering(bin, 5)
@@ -270,8 +270,8 @@ def load_model():
 def process_board(board):
 
     processed_board = board.copy()
-    cv2.floodFill(processed_board, None, (0, 0), 0)
-    cv2.floodFill(processed_board, None, (0, 0), 255)
+    cv2.floodFill(processed_board, None, (processed_board.shape[1]-1, processed_board.shape[0]-1), 0)
+    cv2.floodFill(processed_board, None, (processed_board.shape[1]-1, processed_board.shape[0]-1), 255)
     processed_board = np.array(median_filtering(processed_board, 3), np.uint8)
 
     return processed_board
@@ -280,7 +280,7 @@ def image_to_array(image):
 
     board = get_board(image)
 
-    board_thresh = adaptive_thresh(board, 11, 8, 7)[2]
+    board_thresh = adaptive_thresh(board, 11, 8, 15)[2]
 
     model = load_model()
 
