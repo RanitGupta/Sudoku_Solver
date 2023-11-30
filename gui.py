@@ -24,7 +24,7 @@ def openImage():
     #save image as cv2 object
     img = cv2.imread(img_path)
 
-    # update flag
+    # update new Img flag
     global newImg
     newImg = True
 
