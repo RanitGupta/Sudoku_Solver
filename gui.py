@@ -24,6 +24,10 @@ def openImage():
     #save image as cv2 object
     img = cv2.imread(img_path)
 
+    # update flag
+    global newImg
+    newImg = True
+
 def solveImg():
     global solution
     if img is None:
@@ -53,7 +57,6 @@ while True:
     if img is not None:
         PIL_img = ImageTk.PhotoImage(Image.fromarray(img))
         image_label['image'] = PIL_img
-        newImg = True
     if solution is not None and newImg:
         print(np.matrix(solution))
         newImg = False
