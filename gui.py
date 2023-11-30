@@ -58,7 +58,7 @@ image_label = Label(app, bg='black')
 image_label.pack(in_=imageFrame, side=LEFT, fill=BOTH, expand=TRUE)
 
 #Display Solution Matrix
-solution_label = Label(app, bg='black')
+solution_label = Label(app, bg='white')
 solution_label.pack(in_=imageFrame, side=LEFT, fill=BOTH, expand=TRUE)
 
 while True:
