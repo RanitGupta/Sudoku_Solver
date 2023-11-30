@@ -1,4 +1,4 @@
-import numpy as  np
+import numpy as np
 
 # Given a 2D Numpy Array (matrix) of a unsolved sudoku board, output a 2D Array solution (or null if no solution exists) using backtracking
 #   Note that empty squares should be denoted by 0
