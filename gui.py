@@ -15,6 +15,7 @@ from Sudoku_Board1 import image_to_array
 img = None # Sudoku original image
 solution = None # Sudoku Solution Matrix
 newImg = False # If a new Image has been loaded
+newSolution = False #If a new Solution has been calculated
 
 def openImage():
     #get image path
@@ -30,10 +31,13 @@ def openImage():
 
 def solveImg():
     global solution
-    if img is None:
+    if not newImg:
         return
     board = image_to_array(img)
     solution = solve(np.array(board))
+
+    global newSolution
+    newSolution = True
     return
 
 #create main app window
@@ -53,11 +57,16 @@ solve_button.pack(in_=buttonFrame, side=LEFT)
 image_label = Label(app, bg='black')
 image_label.pack(in_=imageFrame, side=LEFT, fill=BOTH, expand=TRUE)
 
+#Display Solution Matrix
+solution_label = Label(app, bg='black')
+solution_label.pack(in_=imageFrame, side=LEFT, fill=BOTH, expand=TRUE)
+
 while True:
     if img is not None:
         PIL_img = ImageTk.PhotoImage(Image.fromarray(img))
         image_label['image'] = PIL_img
-    if solution is not None and newImg:
+    if newSolution and newImg:
+        solution_label['text'] = np.matrix(solution).tobytes()
         print(np.matrix(solution))
         newImg = False
     app.update()
