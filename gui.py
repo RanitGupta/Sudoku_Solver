@@ -66,7 +66,7 @@ while True:
         PIL_img = ImageTk.PhotoImage(Image.fromarray(img))
         image_label['image'] = PIL_img
     if newSolution and newImg:
-        solution_label['text'] = np.matrix(solution).tobytes()
-        print(np.matrix(solution).tobytes())
+        solution_label['text'] = np.matrix(solution)
+        print(np.matrix(solution))
         newImg = False
     app.update()
